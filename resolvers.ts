@@ -29,7 +29,7 @@ export const resolvers = {
       await record.save()
       return record;
     },
-    deleteArticle: async(__dirname,agrs) =>{
+    deleteArticle: async(_,agrs) =>{
       const {id} =agrs
       
       await Article.updateOne({
@@ -40,6 +40,18 @@ export const resolvers = {
       })
 
       return "Đã xóa"
+    },
+    updateArticle : async(_,agrs) =>{
+      const{id, article} =agrs 
+      await Article.updateOne({
+        _id:id,
+        deleted:false
+      },article);
+
+      const record = await Article.findOne({
+        _id: id
+      })
+      return record
     }
   }
 }
