@@ -6,10 +6,28 @@ export const resolvers = {
       return "hello world"
     },
     getListArticle : async () =>{
-      const article = await Article.find({
+      const articles = await Article.find({
+        deleted:false
+      })
+      return articles
+    },
+
+    getArticle : async (_,test) =>{
+      const { id} = test
+      const article = await Article.findOne({
+        _id: id,
         deleted:false
       })
       return article
+    }
+  },
+  Mutation:{
+    createArticle: async(_, agrs) => {
+      const {article} = agrs ;
+
+      const record = new Article(article);
+      await record.save()
+      return record;
     }
   }
 }
