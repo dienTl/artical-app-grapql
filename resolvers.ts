@@ -28,6 +28,18 @@ export const resolvers = {
       const record = new Article(article);
       await record.save()
       return record;
+    },
+    deleteArticle: async(__dirname,agrs) =>{
+      const {id} =agrs
+      
+      await Article.updateOne({
+        _id: id
+      },{
+        deleted:true,
+        deletedAt:new Date()
+      })
+
+      return "Đã xóa"
     }
   }
 }
