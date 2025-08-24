@@ -7,6 +7,7 @@ export const typeDefs = gql`
     avatar: String ,
     description:String ,
     deleted: Boolean ,
+    category: Category
   }
   type Category {
     id: ID
@@ -26,6 +27,7 @@ export const typeDefs = gql`
     title: String ,
     avatar: String ,
     description:String ,
+    categoryId: String
   }
 
 input CategoryInput {

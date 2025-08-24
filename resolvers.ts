@@ -36,6 +36,17 @@ export const resolvers = {
       return category
     }
   },
+  Article:{
+    category: async (article) =>{
+      const categoryId = article.Category;
+
+      const category = await Category.findOne({
+        _id:categoryId ,
+      })
+      return category
+    }
+  }
+  ,
   Mutation:{
     createArticle: async(_, agrs) => {
       const {article} = agrs ;
@@ -98,6 +109,4 @@ export const resolvers = {
       return "Đã xóa"
     }
   }
-
-  
 }
