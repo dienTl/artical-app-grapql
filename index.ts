@@ -3,9 +3,8 @@ import * as database from "./config/database"
 import dotenv from "dotenv"
 import { ApolloServer, gql } from "apollo-server-express";
 import { Query } from "mongoose";
-
+import {resolvers} from "./resolvers/index.resolvers"
 import { typeDefs } from "./typeDefs/index.typeDefs";
-import { resolvers } from "./resolvers";
 const startServer = async () =>{
   dotenv.config()
 database.connect();
@@ -24,7 +23,7 @@ const port : number| string = process.env.PORT || 3000 ;
 
 const apolloServer = new ApolloServer({
   typeDefs:typeDefs,
-  resolvers
+  resolvers: resolvers
 })
 
 await apolloServer.start();
