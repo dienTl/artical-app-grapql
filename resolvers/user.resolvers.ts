@@ -5,10 +5,10 @@ import md5 from "md5"
 
 export const resolversUser ={
   Query :{
-    getUser: async (_,agrs) =>{
-      const {id} = agrs;
+    getUser: async (_,agrs,context) =>{
+      // const {id} = agrs;
       const infouser = await User.findOne({
-        _id:id ,
+        token: context["user"].token,
         deleted:false 
       })
       if(infouser){
