@@ -4,6 +4,30 @@ import User from "../models/user.model";
 import md5 from "md5"
 
 export const resolversUser ={
+  Query :{
+    getUser: async (_,agrs) =>{
+      const {id} = agrs;
+      const infouser = await User.findOne({
+        _id:id ,
+        deleted:false 
+      })
+      if(infouser){
+        return{
+          code:200,
+          message:"Thành công",
+          id: infouser.id,
+          fullName: infouser.fullName,
+          email: infouser.email,
+          token:infouser.token
+        };
+      }else{
+        return{
+          code:400,
+          message:"thất bại"
+        }
+      }
+    }
+  },
   Mutation:{
     registerUser: async(_,args) =>{
       const {user} = args ;
