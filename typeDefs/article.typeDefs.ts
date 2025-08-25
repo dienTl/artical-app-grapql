@@ -10,7 +10,7 @@ export const typeDefsArticle = gql`
     category: Category
   }
   type Query {
-    getListArticle :[Article],
+    getListArticle(sortKey: String, sortValue: String) :[Article],
     getArticle(id:ID ) : Article,
   }
 
